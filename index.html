@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>It's about Cats</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
+      integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
+      crossorigin="anonymous"
+    ></script>
+    <script async type="text/babel" data-presets="stage-0">
+      const getCatFact = async () => {
+        const result = await (
+          await fetch("https://cat-fact.herokuapp.com/facts/random")
+        ).json();
+        return result.text;
+      };
+
+      window.onload = async () => {
+        const root = document.getElementById("root");
+        const catFact = await getCatFact();
+        root.textContent = catFact;
+      };
+    </script>
+  </body>
+</html>
